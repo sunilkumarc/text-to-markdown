@@ -1,5 +1,37 @@
-
 var converter = new Showdown.converter();
+
+var textArea = {
+  width: '50%',
+  height: '595px',
+  float: 'left',
+  border: '1px solid'
+}
+
+var markdown = {
+  border: '1px solid',
+  height: '600px',
+}
+
+var container = {
+  padding: '10px'
+}
+
+var heading = {
+  fontWeight: 'bold',
+  marginBottom: '20px'
+}
+
+var heading1 = {
+  paddingLeft: '20%'
+}
+
+var heading2 = {
+  paddingLeft: '48%'
+}
+
+var contentArea = {
+  border: '2px solid'
+}
 
 var MarkdownEditor = React.createClass({
   getInitialState: function() {
@@ -10,19 +42,22 @@ var MarkdownEditor = React.createClass({
   },
   render: function() {
     return (
-      <div className="MarkdownEditor">
-        <h3>Input</h3>
-        <textarea
-          onChange={this.handleChange}
-          ref="textarea"
-          defaultValue={this.state.value} />
-        <h3>Output</h3>
-        <div
-          className="content"
-          dangerouslySetInnerHTML={{
-            __html: converter.makeHtml(this.state.value)
-          }}
-        />
+      <div style={container}>
+        <div style={heading}>
+          <span style={heading1}>Text</span>
+          <span style={heading2}>Markdown</span>
+        </div>
+        <div style={contentArea}>
+          <textarea
+            onChange={this.handleChange}
+            ref="textarea"
+            defaultValue={this.state.value} style={textArea}/>
+          <div
+            className="content"
+            dangerouslySetInnerHTML={{
+              __html: converter.makeHtml(this.state.value)
+            }} style={markdown}/>
+        </div>
       </div>
     );
   }
